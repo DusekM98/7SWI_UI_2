@@ -1,5 +1,6 @@
 package sample.database;
 
+import java.lang.reflect.Array;
 import java.sql.*;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -41,6 +42,40 @@ public class DBSOperations {
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
+    }
+
+    public static String[] getTimes(Connection connection){
+        ArrayList<String> export = new ArrayList<>();
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet rs = statement.executeQuery("SELECT timeOfStart,timeOfEnd from TimeRange");
+            while (rs.next()){
+                String timeOfStart = rs.getString("timeOfStart");
+                String timeOfEnd = rs.getString("timeOfEnd");
+                String result = timeOfStart.substring(0,5) + "-" + timeOfEnd.substring(0,5);
+                export.add(result);
+            }
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return export.toArray(new String[0]);
+    }
+
+    public static String[] getTypes(Connection connection){
+        ArrayList<String> export = new ArrayList<>();
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet rs = statement.executeQuery("SELECT * from vehicletype");
+            while (rs.next()){
+                String type = rs.getString("description");
+                export.add(type);
+            }
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return export.toArray(new String[0]);
     }
 /*
     public static void printAll(Connection con){

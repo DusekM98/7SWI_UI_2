@@ -114,12 +114,13 @@ public class Controller implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        toAdd = FXCollections.observableArrayList(
-                "7:30-8:00", "8:00-8:30", "8:30-9:00", "9:00-9:30", "9:30-10:00", "10:00-10:30", "10:30-11:00", "11:00-11:30", "11:30-12:00", "12:00-12:30", "12:30-13:00", "13:00-13:30");
-        list.setItems(toAdd);
-        choose = FXCollections.observableArrayList("CAR", "VAN", "TRUCK");
-        chooseBox.getItems().addAll(choose);
         connection = Connector.connect();
+
+        toAdd = FXCollections.observableArrayList(DBSOperations.getTimes(connection));
+        list.setItems(toAdd);
+        choose = FXCollections.observableArrayList(DBSOperations.getTypes(connection));
+        chooseBox.getItems().addAll(choose);
+
     }
 
     public void save() {
@@ -174,7 +175,7 @@ public class Controller implements Initializable {
 
     private String[] getCheckboxes() {
         ArrayList<CheckBox> checkBoxes = new ArrayList<>();
-        String[] names = {"PNEU","OIL","BATTERY","AC","WIPER","COMPLETE","GEOMETRY"};
+        String[] names = {"PNEU","OIL","BATTERY","AC","WIPER","COMPLETE","GEOMETRY"}; //LINK NA DB ?
         checkBoxes.addAll(Arrays.asList(pneuCB, oilCB, batCB, acCB, wipCB, comCB, geoCB));
         ArrayList<String> result = new ArrayList<>();
         for (int i = 0; i < checkBoxes.size(); i++) {
