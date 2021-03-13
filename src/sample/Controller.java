@@ -108,6 +108,9 @@ public class Controller implements Initializable {
     @FXML
     private GridPane grid;
 
+    @FXML
+    private Button changeScene;
+
     private ObservableList<String> toAdd;
     private ObservableList<String> choose;
     private Connection connection;
@@ -184,6 +187,10 @@ public class Controller implements Initializable {
             }
         }
         return result.toArray(new String[0]);
+    }
+
+    public void changeScene(){
+        SceneManager.setRecordsScene();
     }
 
 }

@@ -146,6 +146,7 @@
       <AnchorPane prefHeight="106.0" prefWidth="600.0">
          <children>
             <Button fx:id="saveButton" layoutX="231.0" layoutY="46.0" mnemonicParsing="false" onMouseClicked="#save" prefHeight="34.0" prefWidth="138.0" text="Uložit" />
+            <Button fx:id="changeScene" layoutX="411.0" layoutY="51.0" mnemonicParsing="false" onMouseClicked="#changeScene" text="Button" />
          </children>
       </AnchorPane>
    </children>
